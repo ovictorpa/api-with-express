@@ -1,3 +1,3 @@
 # API-with-express
 
-## Pequena API criada para estudo de Javascript, NodeJS, API e do framework Express
+## Pequena API criada para estudo de Javascript, Node e do framework Express
