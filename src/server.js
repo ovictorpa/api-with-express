@@ -30,3 +30,13 @@ app.post('/products', (requisicao, resposta, next) => {
 app.listen(door, () => {
     console.log(`Este servidor está sendo executado na porta ${door}`)
 })
+
+app.post('/products', (requisicao, resposta, next) => {
+
+    const products = database.getAllProducts({
+
+        all: requisicao.body
+    })
+
+    resposta.sen(product)
+})
