@@ -1,26 +1,30 @@
 const door = 3003
 const express = require('express')
 const app = express()
+const bodyparser = require('body-parser')
 const database = require('./database')
+
+app.use(bodyparser.urlencoded({ extended: true }))
 
 app.get('/products', (requisicao, resposta, next) => {
 
-    resposta.send({ 
-        nome: 'Pastel',
-        preco: 2.50
-    })
+    resposta.send(database.getProdutos())
+
 })
 
 app.get('/products/:id', (requisicao, resposta, next) => {
-    resposta.send(database.getProductById(requisicao.params.id))
+
+    resposta.send(database.getProduto(red.params.id))
 
 })
 
 app.post('/products', (requisicao, resposta, next) => {
 
-    const product = database.saveProduct({
-        nome: requisicao.body.name,
-        preco: requisicao.body.preco
+    const product = database.salvarProduto({
+
+        nome: requisicao.body.nome,
+        preco: requisicao.body.preco,
+        tipo: requisicao.body.tipo
     })
 
     resposta.send(product)
@@ -31,12 +35,3 @@ app.listen(door, () => {
     console.log(`Este servidor está sendo executado na porta ${door}`)
 })
 
-app.post('/products', (requisicao, resposta, next) => {
-
-    const products = database.getAllProducts({
-
-        all: requisicao.body
-    })
-
-    resposta.sen(product)
-})
