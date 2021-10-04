@@ -6,21 +6,29 @@ const sequence = {
 
 const products = {}
 
-function salvarProduto(product){
+function saveProduct(product){
     if(!product.id) product.id = sequence.id
     products[product.id] = product
+
     return product
 }
 
-function getProduto(id) {
+function getProductById(id) {
 
     return products[id] || {}
 }
 
-function getProdutos() {
+function getAllProducts() {
 
     return Object.values(products)
 }
 
-module.exports = { salvarProduto, getProduto, getProdutos}
+function deleteProduct(id){
+
+    const product = products[id]
+    delete products[id]
+    return product
+}
+
+module.exports = { saveProduct, getProductById, getAllProducts, deleteProduct}
 
